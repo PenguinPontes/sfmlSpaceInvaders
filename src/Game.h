@@ -2,6 +2,7 @@
 
 #include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
+#include "Ufo.h"
 #include "Player.h"
 #include "Invaders.h"
 #include "Projectile.h"
@@ -27,15 +28,15 @@ private:
 
     Player *m_player;
     Invaders *m_invaders;
+    Ufo m_Ufo;
 
     sf::Clock m_stepTime;
     sf::Time m_stepGap;
 
     sf::Clock m_shootTime;
-    sf::Time m_shootGap;
 
     sf::Clock m_alienShootTime;
-    sf::Time m_alienShootGap;
+
 public:
 
     Game(int nScreenWidth, int nScreenHeigth);

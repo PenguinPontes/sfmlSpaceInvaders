@@ -2,13 +2,13 @@
 
 Game::Game(int t_ScreenWidth, int t_ScreenHeigth) 
     : nScreenHeigth(t_ScreenHeigth), nScreenWidth(t_ScreenWidth), 
-      m_stepGap(sf::seconds(0.5f)),
-      m_alienShootGap(sf::seconds(1.5f)),
-      m_shootGap(sf::seconds(0.9f))
+      m_stepGap(sf::seconds(0.5f))
 {
     this->m_player = new Player;
     window = new sf::RenderWindow(sf::VideoMode(nScreenWidth, nScreenHeigth), "Milk Invader", sf::Style::Titlebar);
     window->setPosition(sf::Vector2i(100,100));
+
+    window->setFramerateLimit(60);
 
 };
 
@@ -44,6 +44,8 @@ void Game::Run()
         invaders.TryToStep(window);
         invaders.TryToCollideWithProjectiles(m_projectiles);
 
+        m_Ufo.Update(this->window, m_projectiles);
+
         m_player->Draw(window);
         invaders.RenderAliens(window);
 
@@ -60,7 +62,7 @@ void Game::UpdateProjectiles()
 
 void Game::alienShoot(Invaders* t_invaders)
 {
-    if ( m_alienShootTime.getElapsedTime() > m_alienShootGap)
+    if ( m_alienShootTime.getElapsedTime() > sf::seconds(1.5f))
     {
         std::srand(this->m_stepTime.getElapsedTime().asMilliseconds());
 
@@ -83,7 +85,7 @@ void Game::alienShoot(Invaders* t_invaders)
 void Game::playerShoot()
 {
 
-    if (m_shootTime.getElapsedTime() > m_shootGap && sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+    if (m_shootTime.getElapsedTime() > sf::seconds(0.7f) && sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
         m_projectiles.push_back(Projectile({0,-1}, m_player->getGunPosition()));
         m_shootTime.restart();
