@@ -7,9 +7,9 @@ Game::Game(int t_ScreenWidth, int t_ScreenHeigth)
       m_shootGap(sf::seconds(0.9f))
 {
     this->m_player = new Player;
-
     window = new sf::RenderWindow(sf::VideoMode(nScreenWidth, nScreenHeigth), "Milk Invader", sf::Style::Titlebar);
     window->setPosition(sf::Vector2i(100,100));
+
 };
 
 Game::~Game()

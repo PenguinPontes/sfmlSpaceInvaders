@@ -1,13 +1,12 @@
 #pragma once 
 
 #include "SFML/Graphics.hpp"
+#include "SFML/Audio.hpp"
 #include "Player.h"
 #include "Invaders.h"
 #include "Projectile.h"
 
-#include <iostream>
 #include <random>
-#include <chrono>
 
 namespace space_invaders
 {

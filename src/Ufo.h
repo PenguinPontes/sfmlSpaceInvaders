@@ -1,6 +1,9 @@
 #pragma once
 
-class Ufo
+#include "SFML/Graphics.hpp"
+#include "Projectile.h"
+
+class Ufo : public Collidable
 {
 private:
 
@@ -8,12 +11,7 @@ private:
 public:
     Ufo(/* args */);
     ~Ufo();
+
+    void  onCollide(Collidable & other);
+    sf::Vector2f getPosition();
 };
-
-Ufo::Ufo(/* args */)
-{
-}
-
-Ufo::~Ufo()
-{
-}
