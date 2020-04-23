@@ -34,7 +34,8 @@ void Invaders::TryToCollideWithProjectiles(std::vector<Projectile> &t_projectile
             if (!alien.isAlive() || !projectile.isActive())
                 continue;
 
-            alien.TryToCollideWith(projectile);
+            if(alien.TryToCollideWith(projectile))
+                this->m_stepGap -= sf::seconds(0.002);
         }
 }
 
@@ -73,13 +74,15 @@ void Invaders::TryToStep(sf::RenderWindow *window)
             if(a.isAlive())
             {
                 if(m_goDown)
-                    a.Move(0,  stepy);
+                    a.Move(0,  stepy );
                 else
-                    a.Move(stepx,  stepy);
+                    a.Move(stepx ,stepy ); 
             }
         }
-        lastAlienX += stepx;
-        firstalienX += stepx;
+
+        lastAlienX += stepx * this->speed;
+        firstalienX += stepx * this->speed;
+
         m_StepTimer.restart();
     }
 }

@@ -23,6 +23,8 @@ private:
     bool m_goLeft = true;
     bool m_goDown = false;
 
+    float speed = 1.0f;
+
     sf::Clock m_StepTimer;
     sf::Time m_stepGap;
 

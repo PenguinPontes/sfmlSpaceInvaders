@@ -28,8 +28,8 @@ void Ufo::Update(sf::RenderTarget* window, std::vector<Projectile> &t_projectile
         m_isActive = true;
         std::cout << "Ufo Respawnes\n";
         m_SpawnTimer.restart();
-    }else if (this->m_image.getPosition().x > 1000)
-    {
+        this->m_image.setPosition(sf::Vector2f(-45, m_image.getPosition().y));
+    }else if (this->m_image.getPosition().x > 1000) {
         m_isActive = false;
         this->m_image.setPosition(sf::Vector2f(-45, m_image.getPosition().y));
     }
@@ -40,8 +40,15 @@ void Ufo::Update(sf::RenderTarget* window, std::vector<Projectile> &t_projectile
         m_image.move(2, 0);
 
         std::cout << this->m_image.getPosition().x << std::endl;
-        for (auto &proj : t_projectiles)
-            this->TryToCollideWith(proj);
+
+        for (Projectile &proj : t_projectiles)
+        {
+            if (proj.isActive())
+            {
+                this->TryToCollideWith(proj);
+            }
+            
+        }
 
         window->draw(this->m_image);
     }
