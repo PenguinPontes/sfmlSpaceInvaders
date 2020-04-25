@@ -12,6 +12,10 @@ Player::Player()
     image.setTextureRect(sf::IntRect(11,84, 99,59));
     image.setScale(0.7f, 0.7f);
 
+    this->shootBuffer.loadFromFile("res/sounds/player_shoot.wav");
+    this->shootSound.setBuffer(shootBuffer);
+    shootSound.setVolume(30.00f);
+
 }
 
 Player::~Player()

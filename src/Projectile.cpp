@@ -8,6 +8,8 @@ Projectile::Projectile(sf::Vector2i t_moveVec, sf::Vector2f t_Position)
     this->body.setFillColor(sf::Color::White);
     this->body.setPosition(t_Position.x, t_Position.y);
     this->body.setSize(sf::Vector2f(projectile::width, projectile::height));
+
+    this->explodeBuffer.loadFromFile("res/sounds/explosion.wav");
 }
 
 Projectile::~Projectile()
@@ -25,6 +27,9 @@ void Projectile::destroy()
 }
 void Projectile::onCollide(Collidable &other)
 {
+    this->explodeSound.setBuffer(explodeBuffer);
+    explodeSound.setVolume(40.00f);
+    this->explodeSound.play();
     destroy();
 }
 

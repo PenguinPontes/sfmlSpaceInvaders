@@ -1,6 +1,10 @@
 #pragma once
 
 #include "Collidable.h"
+#include "SFML/Audio.hpp"
+
+#include <thread>
+#include <iostream>
 
 namespace projectile
 {
@@ -14,7 +18,11 @@ private:
 
     sf::Vector2f m_moveVec;
     sf::RectangleShape body;
+
     bool m_isAlive;
+
+    sf::SoundBuffer explodeBuffer;
+    sf::Sound explodeSound;
 
 public:
     Projectile(sf::Vector2i t_moveVec, sf::Vector2f t_Position);

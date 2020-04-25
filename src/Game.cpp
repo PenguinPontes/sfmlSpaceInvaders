@@ -38,10 +38,10 @@ void Game::Run()
         m_player->TryToCollideProjectiles(m_projectiles);
 
         this->playerShoot();
-        this->alienShoot(&invaders);
         this->UpdateProjectiles();
 
         invaders.TryToStep(window);
+        invaders.TryToShoot(m_projectiles);
         invaders.TryToCollideWithProjectiles(m_projectiles);
 
 
@@ -60,21 +60,12 @@ void Game::UpdateProjectiles()
         p.update(window);
 }
 
-void Game::alienShoot(Invaders* t_invaders)
-{
-    if ( m_alienShootTime.getElapsedTime() > sf::seconds(0.5f))
-    {
-        Projectile proj({0, 1}, t_invaders->getRandomBottomalien());
-
-        m_projectiles.push_back(proj);
-        m_alienShootTime.restart();
-    }
-}
 void Game::playerShoot()
 {
 
     if (m_shootTime.getElapsedTime() > sf::seconds(0.7f) && sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
+        m_player->PlayAudio();
         m_projectiles.push_back(Projectile({0,-1}, m_player->getGunPosition()));
         m_shootTime.restart();
     }

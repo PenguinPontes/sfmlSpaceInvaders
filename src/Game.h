@@ -7,12 +7,13 @@
 #include "Invaders.h"
 #include "Projectile.h"
 
+#include <thread>
+
 namespace space_invaders
 {
     const int InvaderWidth = 20;
     const int InvaderHeight = 20;
     const int GAP = 10;
-
 }
 class Game
 {
@@ -33,15 +34,12 @@ private:
 
     sf::Clock m_shootTime;
 
-    sf::Clock m_alienShootTime;
-
 public:
 
     Game(int nScreenWidth, int nScreenHeigth);
     ~Game();
 
     void playerShoot();
-    void alienShoot(Invaders *t_invaders);
     void UpdateProjectiles();
 
     void Run();

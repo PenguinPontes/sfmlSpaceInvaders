@@ -12,6 +12,8 @@ private:
 
     sf::Texture texture;
     sf::Sprite image;
+    sf::SoundBuffer shootBuffer;
+    sf::Sound shootSound;
 public:
 
     Player();
@@ -27,6 +29,7 @@ public:
 
     sf::Vector2f getGunPosition();
     bool isAlive() {return m_isAlive;}
+    inline void PlayAudio() {shootSound.play();}
 
 
 };

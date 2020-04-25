@@ -2,7 +2,8 @@ workspace "SFML"
     architecture "x64"
     configurations
     {
-        "Debug"
+        "Debug",
+		"release"
     }
 
 project "sfml_space_invaders"
@@ -13,9 +14,10 @@ project "sfml_space_invaders"
     objdir ("bin-int/")
 
     links{
+		"sfml-audio",
         "sfml-system",
         "sfml-window",
-        "sfml-graphics"
+        "sfml-graphics",
     }
 
     files
@@ -37,3 +39,6 @@ project "sfml_space_invaders"
     filter "configurations:Debug"
         defines "DEBUG"
         symbols "On"
+    filter "configurations:Release"
+        defines "DEBUG"
+		symbols "Off"

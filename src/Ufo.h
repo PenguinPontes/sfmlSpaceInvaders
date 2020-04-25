@@ -1,19 +1,20 @@
 #pragma once
 
 #include "SFML/Graphics.hpp"
+#include "SFML/Audio.hpp"
 #include "Projectile.h"
-#include <iostream>
 
 class Ufo : public Collidable
 {
 private:
-
     sf::Texture m_texture;
     sf::Sprite m_image;
 
-    bool m_isActive = true;
+    bool m_isActive;
 
     sf::Clock m_SpawnTimer;
+
+    sf::Music m_ufoSound;
 public:
     Ufo(/* args */);
     ~Ufo();

@@ -1,13 +1,14 @@
 #include "Ufo.h"
 
 Ufo::Ufo()
-    :Collidable(100, 44)
+    :Collidable(100, 44),
+     m_isActive(false)
 {
-    if (!m_texture.loadFromFile("res/sprites.png"))
-        std::cout << "FAILED TO LOAD TEXTURE\n";
+    m_texture.loadFromFile("res/sprites.png");
     m_image.setTexture(this->m_texture);
     m_image.setTextureRect(sf::IntRect(14,16,100,44));
     m_image.setPosition(-45, 10);
+    this->m_SpawnTimer.restart();
 }
 
 Ufo::~Ufo()
@@ -25,12 +26,27 @@ void Ufo::Update(sf::RenderTarget* window, std::vector<Projectile> &t_projectile
 
     if (m_SpawnTimer.getElapsedTime() > sf::seconds(22.0f))
     {
+
+        this->m_ufoSound.openFromFile("res/sounds/ufoMusic.ogg");
+
+        m_ufoSound.setLoop(true);
+        m_ufoSound.setVolume(50.00f);
+
+        this->m_ufoSound.play();
+
         m_isActive = true;
+
         m_SpawnTimer.restart();
+
         this->m_image.setPosition(sf::Vector2f(-45, m_image.getPosition().y));
+
     }else if (this->m_image.getPosition().x > 1000) {
+
         m_isActive = false;
+
         this->m_image.setPosition(sf::Vector2f(-45, m_image.getPosition().y));
+        
+        this->m_ufoSound.stop();
     }
     
 
@@ -48,5 +64,9 @@ void Ufo::Update(sf::RenderTarget* window, std::vector<Projectile> &t_projectile
         }
 
         window->draw(this->m_image);
+    }else
+    {
+        this->m_ufoSound.stop();
     }
+    
 }
