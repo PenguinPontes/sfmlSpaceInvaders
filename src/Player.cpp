@@ -43,9 +43,9 @@ void Player::Input()
     if (this->m_isAlive)
     {
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-            image.move(-4, 0);
+            image.move(-5, 0);
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-            image.move(4, 0);
+            image.move(5, 0);
     }
     
 

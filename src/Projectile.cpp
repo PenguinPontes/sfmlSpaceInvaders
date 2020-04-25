@@ -32,7 +32,7 @@ void Projectile::update(sf::RenderTarget *window)
 {
     if(m_isAlive)
     {
-        float speed = 5.2f * (float)this->m_moveVec.y ;
+        float speed = 6.6f * (float)this->m_moveVec.y ;
         body.move(0, speed);
 
         if (body.getPosition().y <= 0 || body.getPosition().y >= 1000) 

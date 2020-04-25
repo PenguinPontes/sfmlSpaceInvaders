@@ -7,8 +7,6 @@
 #include "Invaders.h"
 #include "Projectile.h"
 
-#include <random>
-
 namespace space_invaders
 {
     const int InvaderWidth = 20;

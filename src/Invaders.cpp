@@ -8,6 +8,7 @@ Invaders::Invaders()
         {
             float invaderX = x * Invader::Width + (Invader::GAP * x * 3) + Invader::Width;
             float invaderY = y * Invader::Height + (Invader::GAP * y) + Invader::Height * 4;
+           
             Alien d = Alien(sf::Vector2f(invaderX, invaderY));
             d.setGridLocation(sf::Vector2i(x, y));
             d.Init();
@@ -35,8 +36,31 @@ void Invaders::TryToCollideWithProjectiles(std::vector<Projectile> &t_projectile
                 continue;
 
             if(alien.TryToCollideWith(projectile))
-                this->m_stepGap -= sf::seconds(0.002);
+                this->m_stepGap -= sf::seconds(0.005);
         }
+}
+
+sf::Vector2f Invaders::getRandomBottomalien()
+{
+
+    std::srand(this->m_StepTimer.getElapsedTime().asMilliseconds());
+
+    while (true)
+    {
+
+        int randomAlien = rand() % invaders::nInvadersX + 1;
+        for (int x = 0; x < invaders::nInvadersX; x++) 
+            for (int y = 4; y > -1 ; y--)
+            {
+                if ( this->m_Aliens.at(x * invaders::nInvadersY + y).getGridLocation().x == randomAlien && m_Aliens.at(x * invaders::nInvadersY + y).isAlive())
+                {
+
+                    return sf::Vector2f(
+                        this->m_Aliens.at(x * invaders::nInvadersY + y).getPosition().x + Invader::Width / 2, 
+                        this->m_Aliens.at(x * invaders::nInvadersY + y).getPosition().y + Invader::Height + 7);
+                }
+            }
+    }
 }
 
 void Invaders::RenderAliens(sf::RenderWindow *window)

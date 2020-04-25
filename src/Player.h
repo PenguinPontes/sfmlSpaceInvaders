@@ -28,4 +28,5 @@ public:
     sf::Vector2f getGunPosition();
     bool isAlive() {return m_isAlive;}
 
+
 };

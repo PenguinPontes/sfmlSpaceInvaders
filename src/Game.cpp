@@ -44,8 +44,8 @@ void Game::Run()
         invaders.TryToStep(window);
         invaders.TryToCollideWithProjectiles(m_projectiles);
 
-        m_Ufo.Update(this->window, m_projectiles);
 
+        m_Ufo.Update(this->window, m_projectiles);
         m_player->Draw(window);
         invaders.RenderAliens(window);
 
@@ -62,21 +62,9 @@ void Game::UpdateProjectiles()
 
 void Game::alienShoot(Invaders* t_invaders)
 {
-    if ( m_alienShootTime.getElapsedTime() > sf::seconds(1.5f))
+    if ( m_alienShootTime.getElapsedTime() > sf::seconds(0.5f))
     {
-        std::srand(this->m_stepTime.getElapsedTime().asMilliseconds());
-
-        int randomAlien = rand() % invaders::nInvadersX + 1;
-
-        Projectile proj(sf::Vector2i(0,1), sf::Vector2f(-10, -10));
-
-        for ( Alien &p : t_invaders->getAliens()) 
-        {
-            if ( p.getGridLocation().x == randomAlien && p.isAlive())
-            {
-                proj.setPosition(sf::Vector2f(p.getPosition().x + Invader::Width / 2, p.getPosition().y + Invader::Height + 7));
-            }
-        }
+        Projectile proj({0, 1}, t_invaders->getRandomBottomalien());
 
         m_projectiles.push_back(proj);
         m_alienShootTime.restart();

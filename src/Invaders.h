@@ -4,6 +4,7 @@
 #include "Projectile.h"
 #include "Alien.h"
 
+#include <iostream>
 #include <random>
 #include <vector>
 
@@ -40,6 +41,7 @@ public:
     void KillAlien();
 
     void TryToCollideWithProjectiles(std::vector<Projectile> &t_projectiles);
+    sf::Vector2f getRandomBottomalien();
 
     std::vector<Alien> getAliens(){return m_Aliens;}
 };
